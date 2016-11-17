@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twilio at The Hatch</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,fetch,Array.prototype.includes"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/global.css" />
+</head>
+<body>
+  <br /><br />
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+
+        <div class="text-center">
+          <img id="logo" src="logo.png" alt="hatchr - the message platform for the future" /><br /><br />
+        </div>
+
+        <!-- Begin signup panel -->
+        <div id="panelSignup" class="panel panel-default">
+          <div class="panel-heading">
+            Signup!
+          </div>
+          <div class="panel-body" id="formSignup">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" />
+            </div>
+            <div class="form-group">
+              <label for="phone_number">Phone Number</label>
+              <input type="tel" class="form-control" id="phone_number" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" id="message"></textarea>
+            </div>
+          </div>
+          <div class="panel-footer text-right">
+            <a href="#" class="btn" id="btnSkipSignup">Skip</a>
+            <button type="button" class="btn btn-success" id="btnSignup">Signup</button>
+          </div>
+        </div>
+        <!-- End signup panel -->
+
+        <!-- Begin folks panel -->
+        <div id="panelFolks" class="panel panel-default fade-out">
+          <div class="panel-heading">
+            Folks
+          </div>
+          <div class="panel-body">
+            <ul class="list-group" id="listFolks"></ul>
+          </div>
+          <div class="panel-footer">
+            <button type="button" class="btn btn-primary btn-block" id="viewAllMessages">View All Messages</button>
+          </div>
+        </div>
+        <!-- End folks panel -->
+
+        <!-- Begin messages panel -->
+        <div id="panelMessages" class="panel panel-default fade-out">
+          <div class="panel-heading">
+            Messages <span></span>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group" id="listMessages"></ul>
+          </div>
+          <div class="panel-footer text-left">
+            <button type="button" class="btn btn-primary" id="btnReturnToFolks">Back</button>
+          </div>
+        </div>
+        <!-- End messages panel -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts go here. -->
+  <script type="text/javascript" src="js/global.js"></script>
+</body>
+</html>
