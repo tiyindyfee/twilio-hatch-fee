@@ -47,9 +47,9 @@ function skipSignup() {
 }
 
 function signupFolk() {
-  var name = document.getElementById('name')
-  var message = document.getElementById('message')
-  var phoneNumber = document.getElementById('phone_number')
+  var name = document.getElementById('name').value
+  var message = document.getElementById('message').value
+  var phoneNumber = document.getElementById('phone_number').value
 
   document.getElementById('panelSignup').classList.add('fade-out')
 
@@ -81,6 +81,7 @@ function fetchFolks() {
 }
 
 function showFolk(folk) {
+  console.log(folk)
   var list = document.getElementById('listFolks')
   var listItem = document.createElement('li')
   listItem.classList.add('list-group-item')
