@@ -1,52 +1,49 @@
-/*
-Quickee Twilio-backed API: https://twilio-hatch.herokuapp.com/ . Endpoints: `GET /folks` (folks list), `POST /folks` (create a folk, need name, message and phone_number params), `GET /folks/:id` (get a specific folk), `GET /messages` (list of messages … these being the messages from replying to texts … after you reply to one, you get a link to tiy/indy)
- */
 // Settings
 var apiHost = 'https://twilio-hatch.herokuapp.com'
 
 // Events
-document.getElementById('btnSignup').addEventListener('click', signupFolk)
+document.getElementById('btnSignup').addEventListener('click', signupUser)
 document.getElementById('btnSkipSignup').addEventListener('click', skipSignup)
-document.getElementById('listFolks').addEventListener('click', fetchMessages)
+document.getElementById('listUsers').addEventListener('click', fetchMessages)
 document.getElementById('viewAllMessages').addEventListener('click', fetchMessages)
-document.getElementById('btnReturnToFolks').addEventListener('click', viewFolks)
+document.getElementById('btnReturnToUsers').addEventListener('click', viewUsers)
 document.addEventListener('DOMContentLoaded', startApp)
 
 // Functions
 function startApp() {
-  var folk = JSON.parse(localStorage.getItem('folk'))
+  var user = JSON.parse(sessionStorage.getItem('user'))
 
-  if (folk) {
+  if (user) {
     skipSignup()
   }
 }
 
 function viewSignup() {
   document.getElementById('panelSignup').classList.remove('fade-out')
-  document.getElementById('panelFolks').classList.add('fade-out')
+  document.getElementById('panelUsers').classList.add('fade-out')
   document.getElementById('panelMessages').classList.add('fade-out')
 }
 
-function viewFolks() {
+function viewUsers() {
   document.getElementById('panelSignup').classList.add('fade-out')
-  document.getElementById('panelFolks').classList.remove('fade-out')
+  document.getElementById('panelUsers').classList.remove('fade-out')
   document.getElementById('panelMessages').classList.add('fade-out')
 }
 
 function viewMessages() {
   document.getElementById('panelSignup').classList.add('fade-out')
-  document.getElementById('panelFolks').classList.add('fade-out')
+  document.getElementById('panelUsers').classList.add('fade-out')
   document.getElementById('panelMessages').classList.remove('fade-out')
 }
 
 function skipSignup() {
   document.getElementById('panelSignup').classList.add('fade-out')
 
-  stashFolk({id:null})
-  fetchFolks()
+  stashUser({id:null})
+  fetchUsers()
 }
 
-function signupFolk() {
+function signupUser() {
   var name = document.getElementById('name').value
   var message = document.getElementById('message').value
   var phoneNumber = document.getElementById('phone_number').value
@@ -63,37 +60,37 @@ function signupFolk() {
     })
   })
   .then(response => response.json())
-  .then(folk => {
-    stashFolk(folk)
-    fetchFolks()
+  .then(user => {
+    stashUser(user)
+    fetchUsers()
   })
 }
 
-function fetchFolks() {
-  document.getElementById('listFolks').innerHTML = ''
+function fetchUsers() {
+  document.getElementById('listUsers').innerHTML = ''
 
   fetch(apiHost + '/folks')
   .then(response => response.json())
-  .then(folks => {
-    folks.forEach(showFolk)
-    viewFolks()
+  .then(users => {
+    users.forEach(showUser)
+    viewUsers()
   })
 }
 
-function showFolk(folk) {
-  console.log(folk)
-  var list = document.getElementById('listFolks')
+function showUser(user) {
+  console.log(user)
+  var list = document.getElementById('listUsers')
   var listItem = document.createElement('li')
   listItem.classList.add('list-group-item')
-  listItem.setAttribute('data-id', folk.id)
-  listItem.innerHTML = folk.name
+  listItem.setAttribute('data-id', user.id)
+  listItem.innerHTML = user.name
   //list.insertBefore(listItem, list.firstChild)
 
   list.appendChild(listItem)
 }
 
-function stashFolk(folk) {
-  localStorage.setItem('folk', JSON.stringify(folk))
+function stashUser(user) {
+  sessionStorage.setItem('user', JSON.stringify(user))
 }
 
 function fetchMessages(e) {
@@ -107,8 +104,8 @@ function fetchMessages(e) {
 
     fetch(apiHost + '/folks/' + id)
     .then(response => response.json())
-    .then(folk => {
-      folk.messages.forEach(showMessage)
+    .then(user => {
+      user.messages.forEach(showMessage)
       viewMessages()
     })
   }
