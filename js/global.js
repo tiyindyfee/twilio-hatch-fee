@@ -1,13 +1,14 @@
-// Settings
+// Configuration
 var apiHost = 'https://twilio-hatch.herokuapp.com'
 
 // Events
+document.addEventListener('DOMContentLoaded', startApp)
 document.getElementById('btnSignup').addEventListener('click', signupUser)
+document.getElementById('linkSignout').addEventListener('click', signoutUser)
 document.getElementById('btnSkipSignup').addEventListener('click', skipSignup)
 document.getElementById('listUsers').addEventListener('click', fetchMessages)
 document.getElementById('viewAllMessages').addEventListener('click', fetchMessages)
 document.getElementById('btnReturnToUsers').addEventListener('click', viewUsers)
-document.addEventListener('DOMContentLoaded', startApp)
 
 // Functions
 function startApp() {
@@ -64,6 +65,11 @@ function signupUser() {
     stashUser(user)
     fetchUsers()
   })
+}
+
+function signoutUser() {
+    sessionStorage.clear()
+    location.href = '/'
 }
 
 function fetchUsers() {

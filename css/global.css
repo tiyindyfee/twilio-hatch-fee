@@ -1,10 +1,13 @@
+/* Resets */
 * { box-sizing: border-box; }
 img { width: 100%; }
 
+/* General */
 body {
   background: url(../img/seigaiha.png);
 }
 
+/* Specific */
 #logo {
   width: 150px;
 }
