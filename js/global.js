@@ -69,7 +69,7 @@ function signupUser() {
 
 function signoutUser() {
     sessionStorage.clear()
-    location.href = '/'
+    location.reload(true)
 }
 
 function fetchUsers() {
